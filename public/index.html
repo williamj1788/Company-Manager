@@ -16,11 +16,15 @@
                 <h1 class="login-title">Login</h1>
                 <form action="http://localhost:3000/login" method="post">
                     <label for="username" id="username-label">Username</label>
-                    <input type="text" name="username" id="username">
+                    <input type="text" name="username" id="username" required>
                     <label for="password" id="password-label">Password</label>
-                    <input type="password" name="password" id="password">
+                    <input type="password" name="password" id="password" required>
                     <button type="button">Submit</button>
                 </form>
+                <div id="signup">
+                    <p class="account">Already have an account?</p>
+                    <a href="/signup">Sign up</a>
+                </div>
             </div>
         </div>
     </body>
