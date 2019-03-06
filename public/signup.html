@@ -38,8 +38,15 @@
                 method: 'POST',
                 body: formData
             }).then(res => {
-                return res.text();
-            }).then(res => console.log(res));
+                return res.json();
+            }).then(res => {
+                if(res.taken){
+                    console.log(res.text);
+                    form.reset();
+                }else{
+                    window.location = 'company';
+                }
+            });
         }
         </script>
     </body>
