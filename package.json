@@ -18,7 +18,9 @@
   },
   "homepage": "https://github.com/williamj1788/Company-Manager#readme",
   "dependencies": {
+    "body-parser": "^1.18.3",
     "express": "^4.16.4",
+    "multer": "^1.4.1",
     "nodemon": "^1.18.10"
   }
 }

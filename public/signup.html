@@ -7,39 +7,25 @@
         <base href="/">
         <link rel="stylesheet" href="Normalize.css">
         <link rel="stylesheet" type="text/css" href="index.css">
-        <title>Login</title>
+        <title>Sign up</title>
     </head>
     <body>
         <div id="main">
             <h1 class="title">Company Manager</h1>
             <div class="login">
-                <h1 class="login-title">Login</h1>
-                <form onsubmit="hello(event)" id="login-form">
+                <h1 class="login-title">Sign</h1>
+                <form action="http://localhost:3000/signup" method="post">
                     <label for="username" id="username-label">Username</label>
                     <input type="text" name="username" id="username" required>
                     <label for="password" id="password-label">Password</label>
                     <input type="password" name="password" id="password" required>
-                    <button type="submit">Submit</button>
+                    <button type="button">Submit</button>
                 </form>
                 <div id="signup">
-                    <p class="account">Don't have an account?</p>
-                    <a href="/signup">Sign up</a>
+                    <p class="account">Already have an account?</p>
+                    <a href="/">Login</a>
                 </div>
             </div>
         </div>
-        <script>
-        function hello(event){
-            event.preventDefault();
-            var form = document.getElementById('login-form');
-            var formData = new FormData(form);
-
-            fetch('http://localhost:3000/login', {
-                method: 'POST',
-                body: formData
-            }).then(res => {
-                window.location += 'company'
-            });
-        }
-        </script>
     </body>
 </html>
