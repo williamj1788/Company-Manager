@@ -1,0 +1,24 @@
+{
+  "name": "company-manager",
+  "version": "1.0.0",
+  "description": "A little express app",
+  "main": "sever.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/williamj1788/Company-Manager.git"
+  },
+  "author": "Jacquez Williams",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/williamj1788/Company-Manager/issues"
+  },
+  "homepage": "https://github.com/williamj1788/Company-Manager#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "nodemon": "^1.18.10"
+  }
+}
