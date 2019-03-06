@@ -9,4 +9,60 @@ body {
   background-color: rgba(0, 220, 255, 0.05);
 }
 
+.title {
+  margin: 0;
+  text-align: center;
+  font-family: "Carter One", cursive;
+  font-size: 70px;
+  color: #707070;
+}
+
+.login {
+  width: 506px;
+  height: 525px;
+  border-radius: 36px;
+  margin: 0 auto;
+  margin-top: 70px;
+  background-color: white;
+  box-shadow: 0 0 21px rgba(0, 0, 0, 0.16);
+}
+.login .login-title {
+  text-align: center;
+  color: #707070;
+  font-size: 41px;
+  font-family: "Carter One", cursive;
+  padding-top: 15px;
+  margin: 0;
+}
+.login label {
+  display: block;
+  font-weight: bold;
+  font-size: 24px;
+  text-align: center;
+  color: #707070;
+  padding: 15px 0;
+}
+.login input {
+  background-color: #F5F5F5;
+  display: block;
+  width: 356px;
+  height: 44px;
+  border-radius: 6px;
+  border: 1px solid black;
+  margin: 0 auto;
+}
+.login button {
+  width: 269px;
+  height: 64px;
+  display: block;
+  background-color: #04B0FC;
+  border-radius: 13px;
+  border: 0;
+  margin: 0 auto;
+  margin-top: 55px;
+}
+.login button:focus {
+  outline: none;
+}
+
 /*# sourceMappingURL=index.css.map */

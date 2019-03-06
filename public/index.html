@@ -5,12 +5,23 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <base href="/">
+        <link rel="stylesheet" href="Normalize.css">
         <link rel="stylesheet" type="text/css" href="index.css">
         <title>Home Page</title>
     </head>
     <body>
         <div id="main">
-            sdsd
+            <h1 class="title">Company Manager</h1>
+            <div class="login">
+                <h1 class="login-title">Login</h1>
+                <form action="http://localhost:3000/login" method="post">
+                    <label for="username" id="username-label">Username</label>
+                    <input type="text" name="username" id="username">
+                    <label for="password" id="password-label">Password</label>
+                    <input type="password" name="password" id="password">
+                    <button type="button">Submit</button>
+                </form>
+            </div>
         </div>
     </body>
 </html>
