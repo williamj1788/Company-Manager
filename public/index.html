@@ -30,6 +30,7 @@
         <script>
         function hello(event){
             event.preventDefault();
+            
             var form = document.getElementById('login-form');
             var formData = new FormData(form);
 
@@ -37,7 +38,7 @@
                 method: 'POST',
                 body: formData
             }).then(res => {
-                window.location += 'company'
+                window.location += 'company';
             });
         }
         </script>

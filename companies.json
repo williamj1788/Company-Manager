@@ -1,5 +1,11 @@
 {
-    "companies": [
-        
-    ]
+  "companies": [
+    {
+      "username": "asdas",
+      "password": "asdasd",
+      "customers": [],
+      "products": [],
+      "stores": []
+    }
+  ]
 }

@@ -14,12 +14,12 @@
             <h1 class="title">Company Manager</h1>
             <div class="login">
                 <h1 class="login-title">Sign</h1>
-                <form action="http://localhost:3000/signup" method="post">
+                <form onsubmit="signup(event)" id="signup-form">
                     <label for="username" id="username-label">Username</label>
                     <input type="text" name="username" id="username" required>
                     <label for="password" id="password-label">Password</label>
                     <input type="password" name="password" id="password" required>
-                    <button type="button">Submit</button>
+                    <button type="submit">Submit</button>
                 </form>
                 <div id="signup">
                     <p class="account">Already have an account?</p>
@@ -27,5 +27,20 @@
                 </div>
             </div>
         </div>
+        <script>
+        function signup(event){
+            event.preventDefault();
+            console.log('Working');
+            var form = document.getElementById('signup-form');
+            var formData = new FormData(form);
+
+            fetch('http://localhost:3000/signup', {
+                method: 'POST',
+                body: formData
+            }).then(res => {
+                return res.text();
+            }).then(res => console.log(res));
+        }
+        </script>
     </body>
 </html>

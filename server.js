@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const fs = require('fs');
 // const bodyParser = require('body-parser');
 const multer = require('multer');
 var upload = multer();
@@ -16,6 +17,25 @@ app.get('/', (req, res, next) => {
 })
 app.get('/signup', (req, res, next) => {
     res.sendFile(path.join(__dirname, 'public/signup.html'));
+})
+app.post('/signup',upload.none() ,(req, res, next) => {
+    
+    fs.readFile('companies.json', (err,content) => {
+        if(err) throw err;
+        let dataBase = JSON.parse(content);
+        let newCompany = {
+            username: req.body.username,
+            password: req.body.password,
+            customers: [],
+            products: [],
+            stores: []
+        }
+        dataBase.companies.push(newCompany);
+        fs.writeFile('companies.json', JSON.stringify(dataBase, null,2), (err) => {
+            if(err) throw err;
+        });
+    })
+    res.send("New Company added");
 })
 app.post('/login', upload.none(),(req, res, next) => {
     console.log(req.body);
