@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="Normalize.css">
-    <link rel="stylesheet" href="companyStyle.css">
+    <link rel="stylesheet" href="./css/Normalize.css">
+    <link rel="stylesheet" href="./css/companyStyle.css">
     <title>Company</title>
 </head>
     <body>
@@ -15,13 +15,14 @@
                 <button onclick="signOut()" class="signOut" type="button">Sign out</button>
             </div>
             <div class="button-container">
-                <button class="customers">Customers:</button>
-                <button class="products">Products:</button>
-                <button class="stores">Stores:</button>
+                <button onclick="customers()" class="customers">Customers:</button>
+                <button onclick="products()" class="products">Products:</button>
+                <button onclick="stores()" class="stores">Stores:</button>
             </div>
         </div>
     </body>
     <script>
+
     let company = JSON.parse(localStorage.getItem('user'));
     let title = document.getElementsByClassName('title')[0];
     let buttons = document.getElementsByClassName('button-container')[0].getElementsByTagName('button');
@@ -33,6 +34,15 @@
 
     function signOut(){
         window.location = '/';
+    }
+    function customers(){
+        window.location += '/customers';
+    }
+    function products(){
+        window.location += '/products';
+    }
+    function stores(){
+        window.location += '/stores';
     }
     </script>
 </html>

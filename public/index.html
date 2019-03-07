@@ -5,8 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <base href="/">
-        <link rel="stylesheet" href="Normalize.css">
-        <link rel="stylesheet" type="text/css" href="index.css">
+        <link rel="stylesheet" href="./css/Normalize.css">
+        <link rel="stylesheet" type="text/css" href="./css/index.css">
         <title>Login</title>
     </head>
     <body>
@@ -44,7 +44,7 @@
                     return res;
                 }
             }).then(res => {
-                if(res.username){;
+                if(res.username){
                     console.log(JSON.stringify(res));
                     localStorage.setItem('user', JSON.stringify(res));
                     window.location = 'company';
