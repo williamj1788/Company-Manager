@@ -13,6 +13,13 @@
       "customers": [],
       "products": [],
       "stores": []
-    }
+    },
+    {
+        "username": "s",
+        "password": "s",
+        "customers": [],
+        "products": [],
+        "stores": []
+      }
   ]
 }

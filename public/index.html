@@ -39,6 +39,13 @@
                 body: formData
             }).then(res => {
                 if(res.status === 200){
+                    return res.json();
+                }else{
+                    return res;
+                }
+            }).then(res => {
+                if(res.username){;
+                    localStorage.setItem('user', res);
                     window.location = 'company';
                 }
             })
