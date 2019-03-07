@@ -4,6 +4,8 @@ const fs = require('fs');
 const multer = require('multer');
 var upload = multer();
 
+var companyRouter = require('./companyRouter');
+
 var app = express();
 
 const PORT = 3000;
@@ -45,7 +47,7 @@ app.get('/signup', (req, res, next) => {
     res.sendFile(path.join(__dirname, 'public/signup.html'));
 })
 app.post('/signup', (req, res, next) => {
-
+    
     fs.readFile('companies.json', (err,content) => {
         if(err) throw err;
         let database = JSON.parse(content);
@@ -69,6 +71,7 @@ app.post('/signup', (req, res, next) => {
             next();
         };
     });
+
 },addData)
 
 app.post('/login',(req, res, next) => {
@@ -87,9 +90,6 @@ app.post('/login',(req, res, next) => {
         }
     });
 })
-app.get('/company',(req, res, next) => {
-    console.log('served');
-    res.sendFile(path.join(__dirname, 'public/company.html'));
-})
+app.use('/company', companyRouter)
 
 app.listen(PORT, () => {console.log(`Server is running on port ${PORT}...`)})
