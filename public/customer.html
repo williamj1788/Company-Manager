@@ -29,5 +29,40 @@
                 </tr>
             </table>
         </div>
+        <script>
+        // fetch('http://localhost:3000/company/customers/data',{
+        //     method: 'POST',
+        //     body: JSON.parse(localStorage.getItem('user')).username
+        // })
+        // .then(res => res.json())
+        // .then(res => (() => {
+        //     console.log(res);
+        // }));
+        let customers = JSON.parse(localStorage.getItem('user')).customers;
+        let table = document.getElementById('customers-table');
+
+        customers.forEach(customer => {
+            let row = document.createElement('tr');
+            
+            let td = document.createElement('td');
+            td.appendChild(document.createTextNode(customer.firstname));
+            row.appendChild(td);
+            
+            td = document.createElement('td');
+            td.appendChild(document.createTextNode(customer.lastname));
+            row.appendChild(td);
+
+            td = document.createElement('td');
+            td.appendChild(document.createTextNode(customer.age));
+            row.appendChild(td);
+
+            td = document.createElement('td');
+            td.appendChild(document.createTextNode(customer.spent));
+            row.appendChild(td);
+
+            table.appendChild(row);
+        });
+        
+        </script>
     </body>
 </html>

@@ -8,6 +8,11 @@ router.get('/', (req,res,next) => {
 router.get('/customers', (req,res,next) => {
     res.sendFile(path.join(__dirname, 'public/customer.html'));
 });
+router.get('/customers/data', (req,res,next) => {
+    res.send(JSON.stringify({
+        text: 'hello'
+    }))
+});
 router.get('/products', (req,res,next) => {
     res.sendFile(path.join(__dirname, 'public/product.html'));
 });
