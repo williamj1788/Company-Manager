@@ -70,11 +70,24 @@ app.post('/signup', (req, res, next) => {
         };
     });
 },addData)
-app.post('/login', upload.none(),(req, res, next) => {
-    console.log(req.body);
-    res.redirect('/company');
+
+app.post('/login',(req, res, next) => {
+    fs.readFile('companies.json', (err,content) => {
+        if(err) throw err;
+        let database = JSON.parse(content);
+        let found = false;
+        database.companies.forEach(company => {
+            if(req.body.username === company.username && req.body.password === company.password){
+                found = true;
+                res.send(JSON.stringify(company));
+            }
+        });
+        if(!found){
+            res.status(210).send();
+        }
+    });
 })
-app.get('/company', upload.none(),(req, res, next) => {
+app.get('/company',(req, res, next) => {
     console.log('served');
     res.sendFile(path.join(__dirname, 'public/company.html'));
 })

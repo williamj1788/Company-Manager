@@ -38,8 +38,11 @@
                 method: 'POST',
                 body: formData
             }).then(res => {
-                window.location += 'company';
-            });
+                if(res.status === 200){
+                    window.location = 'company';
+                }
+            })
+            form.reset();
         }
         </script>
     </body>
