@@ -45,7 +45,8 @@
                 }
             }).then(res => {
                 if(res.username){;
-                    localStorage.setItem('user', res);
+                    console.log(JSON.stringify(res));
+                    localStorage.setItem('user', JSON.stringify(res));
                     window.location = 'company';
                 }
             })

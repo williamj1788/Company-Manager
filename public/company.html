@@ -12,13 +12,27 @@
         <div id="main">
             <div class="title-container">
                 <h1 class="title">Hello company</h1>
-                <button class="signOut" type="button">Sign out</button>
+                <button onclick="signOut()" class="signOut" type="button">Sign out</button>
             </div>
             <div class="button-container">
-                <button class="customers">Customers:0</button>
-                <button class="products">Products:0</button>
-                <button class="stores">Stores:0</button>
+                <button class="customers">Customers:</button>
+                <button class="products">Products:</button>
+                <button class="stores">Stores:</button>
             </div>
         </div>
     </body>
+    <script>
+    let company = JSON.parse(localStorage.getItem('user'));
+    let title = document.getElementsByClassName('title')[0];
+    let buttons = document.getElementsByClassName('button-container')[0].getElementsByTagName('button');
+    title.innerHTML = `Hello ${company.username}`;
+    company = [company.customers, company.products, company.stores];
+    buttons[0].innerHTML += company[0].length;
+    buttons[1].innerHTML += company[1].length;
+    buttons[2].innerHTML += company[2].length;
+
+    function signOut(){
+        window.location = '/';
+    }
+    </script>
 </html>
