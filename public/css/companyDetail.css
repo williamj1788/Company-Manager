@@ -47,4 +47,67 @@ body {
   outline: none;
 }
 
+#search-bar {
+  display: block;
+  margin: 0 auto;
+  margin-top: 40px;
+  width: 440px;
+  height: 30px;
+  border-radius: 10px;
+  border: 0;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.16);
+  padding: 0 5px;
+}
+
+#search-bar:focus {
+  outline: none;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-around;
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+.button-container .button {
+  width: 125px;
+  height: 63px;
+  display: block;
+  transition: background-color 0.3s;
+  background-color: #04B0FC;
+  border-radius: 13px;
+  border: 0;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.16);
+  color: white;
+  font-weight: bold;
+  font-family: "Carter One", cursive;
+  font-size: 20px;
+}
+.button-container .button:hover {
+  background-color: #006999;
+  cursor: pointer;
+}
+.button-container .button:focus {
+  outline: none;
+}
+
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+#customers-table {
+  margin: 0 auto;
+  margin-top: 20px;
+  max-width: 800px;
+  width: 100%;
+}
+#customers-table th {
+  font-size: 28px;
+  font-weight: bold;
+  color: #707070;
+}
+
 /*# sourceMappingURL=companyDetail.css.map */

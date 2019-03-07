@@ -50,3 +50,43 @@ body{
         @include button(180px,60px,26px)
     }
 }
+#search-bar{
+    display: block;
+    margin: 0 auto;
+    margin-top: 40px;
+    width: 440px;
+    height: 30px;
+    border-radius: 10px;
+    border: 0;
+    box-shadow: 0 0 10px rgba($color: #000000, $alpha: 0.16);
+    padding: 0 5px;
+}
+#search-bar:focus{
+    outline: none;
+}
+.button-container{
+    display: flex;
+    justify-content: space-around;
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 20px;
+    .button{
+        @include button(125px, 63px, 20px)
+    }
+}
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+#customers-table{
+    margin: 0 auto;
+    margin-top: 20px;
+    max-width: 800px;
+    width: 100%;
+    th{
+        font-size: 28px;
+        font-weight: bold;
+        color: $black;
+    }
+}
