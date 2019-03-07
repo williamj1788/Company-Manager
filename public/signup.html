@@ -30,7 +30,7 @@
         <script>
         function signup(event){
             event.preventDefault();
-            console.log('Working');
+
             var form = document.getElementById('signup-form');
             var formData = new FormData(form);
 
@@ -38,15 +38,11 @@
                 method: 'POST',
                 body: formData
             }).then(res => {
-                return res.json();
-            }).then(res => {
-                if(res.taken){
-                    console.log(res.text);
-                    form.reset();
-                }else{
+                if(res.status === 201){
                     window.location = 'company';
                 }
-            });
+            })
+            form.reset();
         }
         </script>
     </body>

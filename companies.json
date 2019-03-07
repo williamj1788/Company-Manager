@@ -1,6 +1,27 @@
 {
   "companies": [
     {
+      "username": "ss",
+      "password": "a",
+      "customers": [],
+      "products": [],
+      "stores": []
+    },
+    {
+      "username": "aa",
+      "password": "a",
+      "customers": [],
+      "products": [],
+      "stores": []
+    },
+    {
+      "username": "asdasd",
+      "password": "aa",
+      "customers": [],
+      "products": [],
+      "stores": []
+    },
+    {
       "username": "asdas",
       "password": "asdasd",
       "customers": [],
@@ -8,43 +29,8 @@
       "stores": []
     },
     {
-      "username": "sdasda",
-      "password": "asdas",
-      "customers": [],
-      "products": [],
-      "stores": []
-    },
-    {
-      "username": "cool",
-      "password": "1234",
-      "customers": [],
-      "products": [],
-      "stores": []
-    },
-    {
-      "username": "sdfsdf",
-      "password": "sdfsdf",
-      "customers": [],
-      "products": [],
-      "stores": []
-    },
-    {
-      "username": "sdfsdfsd",
-      "password": "sdfsdfsd",
-      "customers": [],
-      "products": [],
-      "stores": []
-    },
-    {
-      "username": "aaaa",
-      "password": "aaaaa",
-      "customers": [],
-      "products": [],
-      "stores": []
-    },
-    {
-      "username": "aaaaaaa",
-      "password": "aaaaaa",
+      "username": "asda",
+      "password": "asdasd",
       "customers": [],
       "products": [],
       "stores": []

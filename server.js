@@ -1,7 +1,6 @@
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
-// const bodyParser = require('body-parser');
 const multer = require('multer');
 var upload = multer();
 
@@ -9,8 +8,35 @@ var app = express();
 
 const PORT = 3000;
 
+// function checkData(req,res,next){
+//     fs.readFile('companies.json',(err,content) => {
+//         if(err) throw err;
+//         let dataBase = JSON.parse(content);
+//         let check = res.locals.callback(dataBase,data);
+//         if(check === ''){
+//             next();
+//         }else{
+//             res.send(check);
+//         }
+//     })
+// }
+
+
+function addData(req,res,next){
+    let database = res.locals.database;
+    let data = null;
+    if(res.locals.company){
+        data = res.locals.company;
+        database.companies.push(data);
+    }
+    fs.writeFile('companies.json',JSON.stringify(database,null,2), err =>{
+        if(err) throw err;
+    })
+    res.status(201).send(data);
+}
+
 app.use(express.static(path.join(__dirname, 'public')));
-// app.use(bodyParser.json());
+app.use(upload.none());
 
 app.get('/', (req, res, next) => {
     res.sendFile(path.join(__dirname, 'public/index.html'));
@@ -18,20 +44,16 @@ app.get('/', (req, res, next) => {
 app.get('/signup', (req, res, next) => {
     res.sendFile(path.join(__dirname, 'public/signup.html'));
 })
-app.post('/signup',upload.none() ,(req, res, next) => {
-    
-    
+app.post('/signup', (req, res, next) => {
+
     fs.readFile('companies.json', (err,content) => {
         if(err) throw err;
-        let dataBase = JSON.parse(content);
+        let database = JSON.parse(content);
         let taken = false;
-        dataBase.companies.forEach(company => {
-            if(company.username === req.body.username){
+        database.companies.forEach(company => {
+            if(req.body.username === company.username){
                 taken = true;
-                res.send(JSON.stringify({
-                    text: "User taken",
-                    taken: true
-                }));
+                res.send();
             }
         });
         if(!taken){
@@ -42,17 +64,12 @@ app.post('/signup',upload.none() ,(req, res, next) => {
                 products: [],
                 stores: []
             }
-            dataBase.companies.push(newCompany);
-            fs.writeFile('companies.json', JSON.stringify(dataBase, null,2), (err) => {
-                if(err) throw err;
-            });
-            res.status(201).send(JSON.stringify({
-                text: "User Added",
-                taken: false
-            }));
-        }
-    })
-})
+            res.locals.company = newCompany;
+            res.locals.database = database;
+            next();
+        };
+    });
+},addData)
 app.post('/login', upload.none(),(req, res, next) => {
     console.log(req.body);
     res.redirect('/company');
