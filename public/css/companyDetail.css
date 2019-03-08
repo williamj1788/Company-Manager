@@ -128,10 +128,12 @@ table, th, td {
 }
 .add .container {
   background-color: white;
-  max-width: 800px;
+  max-width: 500px;
   width: 100%;
   margin: auto;
   margin-top: 200px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.16);
 }
 .add .container .modal {
   background-color: rgba(0, 220, 255, 0.05);
@@ -143,10 +145,17 @@ table, th, td {
 .add .container .modal .modal-container label {
   display: block;
   text-align: center;
+  font-size: 23px;
+  padding: 7px 0;
+  color: #707070;
 }
 .add .container .modal .modal-container input {
   display: block;
   width: fit-content;
+  height: 25px;
+  border: 0;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.16);
+  border-radius: 4px;
 }
 .add .container .modal .modal-container .button {
   width: 75px;
@@ -161,7 +170,7 @@ table, th, td {
   font-weight: bold;
   font-family: "Carter One", cursive;
   font-size: 15px;
-  margin: 0 auto;
+  margin: 10px auto;
 }
 .add .container .modal .modal-container .button:hover {
   background-color: #006999;

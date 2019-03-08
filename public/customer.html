@@ -41,13 +41,33 @@
                         <input type="text" name="age">
                         <label for="spent"><b>Money Spented</b></label>
                         <input type="text" name="spent">
-                        <button class="button">Add</button>
+                        <button class="button" type="submit" id="submit">Add</button>
                     </div>
                 </form>
             </div>
         </div>
         <script>
+        function addData(url,data){
+            fetch(url, {
+                method: 'POST',
+                body: data
+            })
+            .then(res => {return res.json()})
+            .then(res => {
+                console.log(res);
+                localStorage.setItem('user', JSON.stringify(res))
+            })
+            // .then(updateTable());
+        }
+        
+        function toggleModal(){
+            let modal = document.getElementsByClassName('add')[0];
+            modal.style.display === 'block'? 'none' : 'block';
+        }
+        
         function updateTable(){
+            console.log('now Updating');
+            console.log(JSON.parse(localStorage.getItem('user')));
             let customers = JSON.parse(localStorage.getItem('user')).customers;
             let table = document.getElementById('customers-table');
 
@@ -74,6 +94,19 @@
             });
         }
         updateTable();
+
+        let submit = document.getElementById('submit');
+        submit.addEventListener('click' ,toggleModal);
+
+        let modal = document.getElementsByClassName('add')[0];
+        let form = document.getElementsByClassName('modal')[0];
+        let formData = new FormData(form);
+        formData.append('username', JSON.parse(localStorage.getItem('user')).username);
+        modal.addEventListener('submit', ((event) => {
+            event.preventDefault();
+            addData(event,'http://localhost:3000/company/customers',formData)
+            return false;
+        }));
         </script>
     </body>
 </html>
