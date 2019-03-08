@@ -16,7 +16,7 @@
             </div>
             <input type="text" id="search-bar">
             <div class="button-container">
-                <button class="button">Add</button>
+                <button class="button" onclick="toggleModal()">Add</button>
                 <button class="button">Delete</button>
                 <button class="button">Edit</button>
             </div>
@@ -29,18 +29,18 @@
                 </tr>
             </table>
         </div>
-        <div class="add">
+        <div class="add" style="display: none;">
             <div class="container">
                 <form class="modal">
                     <div class="modal-container">
                         <label for="firstname"><b>Firstname</b></label>
-                        <input type="text" name="firstname">
+                        <input type="text" name="firstname" required>
                         <label for="lastname"><b>Lastname</b></label>
-                        <input type="text" name="lastname">
+                        <input type="text" name="lastname" required>
                         <label for="age"><b>Age</b></label>
-                        <input type="text" name="age">
+                        <input type="number" name="age" min="0" required>
                         <label for="spent"><b>Money Spented</b></label>
-                        <input type="text" name="spent">
+                        <input type="number" name="spent" required>
                         <button class="button" type="submit" id="submit">Add</button>
                     </div>
                 </form>
@@ -50,8 +50,7 @@
         function addData(url){
             let form = document.getElementsByClassName('modal')[0];
             let formData = new FormData(form);
-            // formData.append('username', JSON.parse(localStorage.getItem('user')).username);
-            formData.append('username', 's');
+            formData.append('username', JSON.parse(localStorage.getItem('user')).username);
             fetch(url, {
                 method: 'POST',
                 body: formData
@@ -60,19 +59,25 @@
             .then(res => {
                 console.log(res);
                 localStorage.setItem('user', JSON.stringify(res))
-            })
-            .then(updateTable());
+            }).then(updateTable)
+            .then(toggleModal);
+            
         }
         
         function toggleModal(){
             console.log('Toggle');
             let modal = document.getElementsByClassName('add')[0];
-            modal.style.display === 'block'? 'none' : 'block';
+            console.log(modal);
+            console.log(modal.style.display);
+            if(modal.style.display === 'none'){
+                modal.style.display = 'block';
+            }else{
+                modal.style.display = 'none';
+            }
         }
         
         function updateTable(){
             console.log('Now Updating');
-            console.log(JSON.parse(localStorage.getItem('user')));
             let customers = JSON.parse(localStorage.getItem('user')).customers;
             let table = document.getElementById('customers-table');
 
@@ -98,19 +103,16 @@
                 table.appendChild(row);
             });
         }
-        // updateTable();
-
-        let submit = document.getElementById('submit');
-        submit.addEventListener('click' ,toggleModal);
         let form = document.getElementsByClassName('modal')[0];
         function onSubmit(event){
-            console.log('Submit click');
             event.preventDefault();
             addData('http://localhost:3000/company/customers');
+            form.reset();
             return false;
         }
         form.addEventListener('submit',onSubmit);
-        console.log(form);
+        updateTable();
+
 
         </script>
     </body>

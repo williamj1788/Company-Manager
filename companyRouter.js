@@ -19,8 +19,8 @@ router.post('/customers', (req,res,next) => {
         let customer = {
             firstname: req.body.firstname,
             lastname: req.body.lastname,
-            age: req.body.age,
-            spent: req.body.spent,
+            age: parseInt(req.body.age),
+            spent: parseInt(req.body.spent),
         }
         let company = dataBase.companies.filter((company) => {
             if(company.username === req.body.username){

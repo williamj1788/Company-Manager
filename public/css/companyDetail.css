@@ -116,7 +116,7 @@ table, th, td {
 }
 
 .add {
-  display: block;
+  display: none;
   position: fixed;
   z-index: 1;
   left: 0;
@@ -128,10 +128,12 @@ table, th, td {
 }
 .add .container {
   background-color: white;
-  max-width: 800px;
+  max-width: 300px;
   width: 100%;
   margin: auto;
   margin-top: 200px;
+  border-radius: 10px;
+  animation: zoomOut 1s;
 }
 .add .container .modal {
   background-color: rgba(0, 220, 255, 0.05);
@@ -143,10 +145,15 @@ table, th, td {
 .add .container .modal .modal-container label {
   display: block;
   text-align: center;
+  padding: 10px 0;
 }
 .add .container .modal .modal-container input {
   display: block;
   width: fit-content;
+  height: 20px;
+  border: 0;
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.16);
 }
 .add .container .modal .modal-container .button {
   width: 75px;
@@ -161,7 +168,7 @@ table, th, td {
   font-weight: bold;
   font-family: "Carter One", cursive;
   font-size: 15px;
-  margin: 0 auto;
+  margin: 10px auto;
 }
 .add .container .modal .modal-container .button:hover {
   background-color: #006999;
@@ -169,6 +176,15 @@ table, th, td {
 }
 .add .container .modal .modal-container .button:focus {
   outline: none;
+}
+
+@keyframes zoomOut {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
 }
 
 /*# sourceMappingURL=companyDetail.css.map */
