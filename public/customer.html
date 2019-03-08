@@ -12,7 +12,7 @@
         <div id="main">
             <div class="title-container">
                 <h1 class="title">Customers</h1>
-                <button class="back">Back</button>
+                <button class="back" onclick="back()">Back</button>
             </div>
             <input type="text" id="search-bar">
             <div class="button-container">
@@ -21,7 +21,7 @@
                 <button class="button">Edit</button>
             </div>
             <table id="customers-table">
-                <tr>
+                <tr id="header">
                     <th>Firstname</th>
                     <th>Lastname</th>
                     <th>Age</th>
@@ -57,7 +57,6 @@
             })
             .then(res => {return res.json()})
             .then(res => {
-                console.log(res);
                 localStorage.setItem('user', JSON.stringify(res))
             }).then(updateTable)
             .then(toggleModal);
@@ -65,10 +64,7 @@
         }
         
         function toggleModal(){
-            console.log('Toggle');
             let modal = document.getElementsByClassName('add')[0];
-            console.log(modal);
-            console.log(modal.style.display);
             if(modal.style.display === 'none'){
                 modal.style.display = 'block';
             }else{
@@ -80,6 +76,11 @@
             console.log('Now Updating');
             let customers = JSON.parse(localStorage.getItem('user')).customers;
             let table = document.getElementById('customers-table');
+            let header = document.getElementById('header');
+            while (table.hasChildNodes()) {   
+                table.removeChild(table.firstChild);
+            }
+            table.appendChild(header);
 
             customers.forEach(customer => {
                 let row = document.createElement('tr');
@@ -102,6 +103,9 @@
 
                 table.appendChild(row);
             });
+        }
+        function back(){
+            window.location.pathname = '/company';
         }
         let form = document.getElementsByClassName('modal')[0];
         function onSubmit(event){

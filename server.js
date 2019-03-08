@@ -10,20 +10,6 @@ var app = express();
 
 const PORT = 3000;
 
-// function checkData(req,res,next){
-//     fs.readFile('companies.json',(err,content) => {
-//         if(err) throw err;
-//         let dataBase = JSON.parse(content);
-//         let check = res.locals.callback(dataBase,data);
-//         if(check === ''){
-//             next();
-//         }else{
-//             res.send(check);
-//         }
-//     })
-// }
-
-
 function addData(req,res,next){
     let database = res.locals.database;
     let data = null;
