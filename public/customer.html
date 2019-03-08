@@ -41,32 +41,27 @@
                         <input type="text" name="age">
                         <label for="spent"><b>Money Spented</b></label>
                         <input type="text" name="spent">
-                        <button class="button">Add</button>
+                        <button class="button" type="submit" id="submit">Add</button>
                     </div>
                 </form>
             </div>
         </div>
         <script>
-        function addData(url,data){
-            console.log(url);
+        function addData(url){
             let form = document.getElementsByClassName('modal')[0];
-            console.log(form);
             let formData = new FormData(form);
             // formData.append('username', JSON.parse(localStorage.getItem('user')).username);
             formData.append('username', 's');
-            for(let pair of formData.entries()){
-                console.log(pair[0]+ ', '+ pair[1]); 
-            }
             fetch(url, {
                 method: 'POST',
-                body: data
+                body: formData
             })
             .then(res => {return res.json()})
             .then(res => {
                 console.log(res);
                 localStorage.setItem('user', JSON.stringify(res))
             })
-            // .then(updateTable());
+            .then(updateTable());
         }
         
         function toggleModal(){
@@ -103,7 +98,20 @@
                 table.appendChild(row);
             });
         }
-        updateTable();
+        // updateTable();
+
+        let submit = document.getElementById('submit');
+        submit.addEventListener('click' ,toggleModal);
+        let form = document.getElementsByClassName('modal')[0];
+        function onSubmit(event){
+            console.log('Submit click');
+            event.preventDefault();
+            addData('http://localhost:3000/company/customers');
+            return false;
+        }
+        form.addEventListener('submit',onSubmit);
+        console.log(form);
+
         </script>
     </body>
 </html>
