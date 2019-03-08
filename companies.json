@@ -36,8 +36,14 @@
           "age": 19,
           "spent": 1
         }
-        
       ],
+      "products": [],
+      "stores": []
+    },
+    {
+      "username": "ss",
+      "password": "ss",
+      "customers": [],
       "products": [],
       "stores": []
     }

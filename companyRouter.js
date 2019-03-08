@@ -1,7 +1,11 @@
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
+const multer = require('multer');
+var upload = multer();
+
 var router = express.Router();
+
 
 router.get('/', (req,res,next) => {
     res.sendFile(path.join(__dirname, 'public/company.html'));
@@ -9,11 +13,12 @@ router.get('/', (req,res,next) => {
 router.get('/customers', (req,res,next) => {
     res.sendFile(path.join(__dirname, 'public/customer.html'));
 });
-router.post('/customers', (req,res,next) => {
-    // console.log('hello');
+router.post('/customers', upload.none(),(req,res,next) => {
+    console.log('hello');
     fs.readFile('companies.json', (err, content) => {
         if(err) throw err;
         let dataBase = JSON.parse(content);
+        console.log(req.body)
         let customer = {
             firstname: req.body.firstname,
             lastname: req.body.lastname,
@@ -30,6 +35,7 @@ router.post('/customers', (req,res,next) => {
         fs.writeFile('companies.json', JSON.stringify(dataBase,null,2), err => {
             if(err) throw err;
         })
+        console.log(company);
         res.send(JSON.stringify(company));
 
 

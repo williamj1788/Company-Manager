@@ -90,6 +90,6 @@ app.post('/login',(req, res, next) => {
         }
     });
 })
-app.use('/company', companyRouter)
+app.use('/company', companyRouter);
 
 app.listen(PORT, () => {console.log(`Server is running on port ${PORT}...`)})

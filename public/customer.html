@@ -48,6 +48,15 @@
         </div>
         <script>
         function addData(url,data){
+            console.log(url);
+            let form = document.getElementsByClassName('modal')[0];
+            console.log(form);
+            let formData = new FormData(form);
+            // formData.append('username', JSON.parse(localStorage.getItem('user')).username);
+            formData.append('username', 's');
+            for(let pair of formData.entries()){
+                console.log(pair[0]+ ', '+ pair[1]); 
+            }
             fetch(url, {
                 method: 'POST',
                 body: data
@@ -61,12 +70,13 @@
         }
         
         function toggleModal(){
+            console.log('Toggle');
             let modal = document.getElementsByClassName('add')[0];
             modal.style.display === 'block'? 'none' : 'block';
         }
         
         function updateTable(){
-            console.log('now Updating');
+            console.log('Now Updating');
             console.log(JSON.parse(localStorage.getItem('user')));
             let customers = JSON.parse(localStorage.getItem('user')).customers;
             let table = document.getElementById('customers-table');
@@ -93,20 +103,16 @@
                 table.appendChild(row);
             });
         }
-        updateTable();
+        // updateTable();
 
         let submit = document.getElementById('submit');
         submit.addEventListener('click' ,toggleModal);
-
-        let modal = document.getElementsByClassName('add')[0];
-        let form = document.getElementsByClassName('modal')[0];
-        let formData = new FormData(form);
-        formData.append('username', JSON.parse(localStorage.getItem('user')).username);
-        modal.addEventListener('submit', ((event) => {
+        let modal = document.getElementsByClassName('modal')[0];
+        modal.addEventListener('submit', event => {
             event.preventDefault();
-            addData(event,'http://localhost:3000/company/customers',formData)
-            return false;
-        }));
+            addData('http://localhost:3000/company/customers');
+        });
+
         </script>
     </body>
 </html>
