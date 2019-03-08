@@ -41,7 +41,7 @@
                         <input type="text" name="age">
                         <label for="spent"><b>Money Spented</b></label>
                         <input type="text" name="spent">
-                        <button class="button" type="submit" id="submit">Add</button>
+                        <button class="button">Add</button>
                     </div>
                 </form>
             </div>
@@ -103,16 +103,7 @@
                 table.appendChild(row);
             });
         }
-        // updateTable();
-
-        let submit = document.getElementById('submit');
-        submit.addEventListener('click' ,toggleModal);
-        let modal = document.getElementsByClassName('modal')[0];
-        modal.addEventListener('submit', event => {
-            event.preventDefault();
-            addData('http://localhost:3000/company/customers');
-        });
-
+        updateTable();
         </script>
     </body>
 </html>
