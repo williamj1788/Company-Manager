@@ -29,40 +29,51 @@
                 </tr>
             </table>
         </div>
+        <div class="add">
+            <div class="container">
+                <form class="modal">
+                    <div class="modal-container">
+                        <label for="firstname"><b>Firstname</b></label>
+                        <input type="text" name="firstname">
+                        <label for="lastname"><b>Lastname</b></label>
+                        <input type="text" name="lastname">
+                        <label for="age"><b>Age</b></label>
+                        <input type="text" name="age">
+                        <label for="spent"><b>Money Spented</b></label>
+                        <input type="text" name="spent">
+                        <button class="button">Add</button>
+                    </div>
+                </form>
+            </div>
+        </div>
         <script>
-        // fetch('http://localhost:3000/company/customers/data',{
-        //     method: 'POST',
-        //     body: JSON.parse(localStorage.getItem('user')).username
-        // })
-        // .then(res => res.json())
-        // .then(res => (() => {
-        //     console.log(res);
-        // }));
-        let customers = JSON.parse(localStorage.getItem('user')).customers;
-        let table = document.getElementById('customers-table');
+        function updateTable(){
+            let customers = JSON.parse(localStorage.getItem('user')).customers;
+            let table = document.getElementById('customers-table');
 
-        customers.forEach(customer => {
-            let row = document.createElement('tr');
-            
-            let td = document.createElement('td');
-            td.appendChild(document.createTextNode(customer.firstname));
-            row.appendChild(td);
-            
-            td = document.createElement('td');
-            td.appendChild(document.createTextNode(customer.lastname));
-            row.appendChild(td);
+            customers.forEach(customer => {
+                let row = document.createElement('tr');
+                
+                let td = document.createElement('td');
+                td.appendChild(document.createTextNode(customer.firstname));
+                row.appendChild(td);
+                
+                td = document.createElement('td');
+                td.appendChild(document.createTextNode(customer.lastname));
+                row.appendChild(td);
 
-            td = document.createElement('td');
-            td.appendChild(document.createTextNode(customer.age));
-            row.appendChild(td);
+                td = document.createElement('td');
+                td.appendChild(document.createTextNode(customer.age));
+                row.appendChild(td);
 
-            td = document.createElement('td');
-            td.appendChild(document.createTextNode(customer.spent));
-            row.appendChild(td);
+                td = document.createElement('td');
+                td.appendChild(document.createTextNode(customer.spent));
+                row.appendChild(td);
 
-            table.appendChild(row);
-        });
-        
+                table.appendChild(row);
+            });
+        }
+        updateTable();
         </script>
     </body>
 </html>
