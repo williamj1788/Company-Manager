@@ -203,4 +203,25 @@ router.post('/stores', (req,res,next) => {
     });
 });
 
+router.delete('/stores', (req,res,next) => {
+    fs.readFile('companies.json', (err, content) => {
+        if(err) throw err;
+        let dataBase = JSON.parse(content);
+        
+        let company = dataBase.companies.filter((company) => {
+            if(company.username === req.query.username){
+                return company;
+            }
+        })[0];
+
+        let companyIndex = dataBase.companies.indexOf(company);
+        dataBase.companies[companyIndex].stores.splice(parseInt(req.query.store),1);
+        fs.writeFile('companies.json', JSON.stringify(dataBase,null,2), err => {
+            if(err) throw err;
+        })
+        res.send(JSON.stringify(company))
+        
+    })
+});
+
 module.exports = router;

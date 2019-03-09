@@ -69,12 +69,6 @@
           "name": "Jacquez Williams",
           "revenue": 1,
           "expense": 1
-        },
-        {
-          "id": 1,
-          "name": "Jacquez ",
-          "revenue": 0,
-          "expense": 0
         }
       ]
     }

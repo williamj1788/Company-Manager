@@ -17,7 +17,7 @@
             <input type="text" id="search-bar">
             <div class="button-container">
                 <button class="button" onclick="toggleModal()">Add</button>
-                <button class="button" onclick="deleteData('http://localhost:3000/company/products','product')">Delete</button>
+                <button class="button" onclick="deleteData('http://localhost:3000/company/stores','store')">Delete</button>
                 <button class="button" onclick="toggleModalWithData()">Edit</button>
             </div>
             <table id="customers-table">
@@ -84,7 +84,6 @@
             table.appendChild(header);
 
             stores.forEach((store,index) => {
-                console.log(store)
                 let row = document.createElement('tr');
                 
                 let td = document.createElement('td');
