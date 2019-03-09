@@ -18,7 +18,7 @@
             <div class="button-container">
                 <button class="button" onclick="toggleModal()">Add</button>
                 <button class="button" onclick="deleteData('http://localhost:3000/company/customers','customer')">Delete</button>
-                <button class="button">Edit</button>
+                <button class="button" onclick="toggleModalWithData()">Edit</button>
             </div>
             <table id="customers-table">
                 <tr id="header">
@@ -34,13 +34,13 @@
                 <form class="modal">
                     <div class="modal-container">
                         <label for="firstname"><b>Firstname</b></label>
-                        <input type="text" name="firstname" required>
+                        <input id="firstname" type="text" name="firstname" required>
                         <label for="lastname"><b>Lastname</b></label>
-                        <input type="text" name="lastname" required>
+                        <input id="lastname" type="text" name="lastname" required>
                         <label for="age"><b>Age</b></label>
-                        <input type="number" name="age" min="0" required>
+                        <input id="age" type="number" name="age" min="0" required>
                         <label for="spent"><b>Money Spented</b></label>
-                        <input type="number" name="spent" required>
+                        <input id="spent" type="number" name="spent" required>
                         <button class="button" type="submit" id="submit">Add</button>
                     </div>
                 </form>
@@ -72,14 +72,45 @@
             .then(res => {localStorage.setItem('user', JSON.stringify(res))})
             .then(updateTable);
         }
+
+        function editData(){
+            
+        }
         
         function toggleModal(){
             let modal = document.getElementsByClassName('pop-up')[0];
+            
             if(modal.style.display === 'none'){
                 modal.style.display = 'block';
             }else{
                 modal.style.display = 'none';
             }
+        }
+        function toggleModalWithData(){
+            if(selectedRow){
+                let customer = JSON.parse(localStorage.getItem('user')).customers[parseInt(selectedRow)];
+                let modal = document.getElementsByClassName('pop-up')[0];
+
+                let firstname = document.getElementById('firstname');
+                let lastname = document.getElementById('lastname');
+                let age = document.getElementById('age');
+                let spent = document.getElementById('spent');
+                
+                firstname.value = customer.firstname;
+                lastname.value = customer.lastname;
+                age.value = parseInt(customer.age);
+                spent.value = parseInt(customer.spent);
+            
+                if(modal.style.display === 'none'){
+                    modal.style.display = 'block';
+                }else{
+                    modal.style.display = 'none';
+                }
+
+
+            }
+
+            
         }
 
         function SetSelectedRow(event){
@@ -121,7 +152,7 @@
                 row.addEventListener('click',(event) => {SetSelectedRow(event)});
 
                 if(selectedRow == index){
-                    row.style.backgroundColor = "blue";
+                    row.style.backgroundColor = "#00D8FA";
                 }
 
                 table.appendChild(row);

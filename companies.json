@@ -17,7 +17,29 @@
     {
       "username": "s",
       "password": "s",
-      "customers": [],
+      "customers": [
+        {
+          "id": 0,
+          "firstname": "Jacquez",
+          "lastname": "Williams",
+          "age": 15,
+          "spent": 15
+        },
+        {
+          "id": 1,
+          "firstname": "Jacquez",
+          "lastname": "Williams",
+          "age": 15,
+          "spent": 15
+        },
+        {
+          "id": 2,
+          "firstname": "asdas",
+          "lastname": "asdasd",
+          "age": 15,
+          "spent": 15
+        }
+      ],
       "products": [],
       "stores": []
     },
