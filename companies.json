@@ -57,18 +57,18 @@
       ],
       "products": [
         {
-          "id": 0,
-          "name": "dds",
-          "price": 3,
-          "stock": 3
+          "id": 1,
+          "name": "Jacquez Williams",
+          "price": 4,
+          "stock": 6
         }
       ],
       "stores": [
         {
           "id": 0,
           "name": "Jacquez Williams",
-          "revenue": 1,
-          "expense": 1
+          "revenue": 3,
+          "expense": 3
         }
       ]
     }

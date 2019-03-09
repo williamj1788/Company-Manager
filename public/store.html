@@ -56,9 +56,9 @@
                 let revenue = document.getElementById('revenue');
                 let expense = document.getElementById('expense');
                 
-                name.value = product.name;
-                revenue.value = parseInt(product.revenue);
-                expense.value = parseInt(product.expense);
+                name.value = store.name;
+                revenue.value = parseInt(store.revenue);
+                expense.value = parseInt(store.expense);
 
                 form.removeEventListener('submit',onSubmit);
                 form.addEventListener('submit', onSubmit2);
