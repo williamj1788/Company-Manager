@@ -17,7 +17,7 @@
             <input type="text" id="search-bar">
             <div class="button-container">
                 <button class="button" onclick="toggleModal()">Add</button>
-                <button class="button">Delete</button>
+                <button class="button" onclick="deleteData('http://localhost:3000/company/customers','customer')">Delete</button>
                 <button class="button">Edit</button>
             </div>
             <table id="customers-table">
@@ -29,7 +29,7 @@
                 </tr>
             </table>
         </div>
-        <div class="add" style="display: none;">
+        <div class="pop-up" style="display: none;">
             <div class="container">
                 <form class="modal">
                     <div class="modal-container">
@@ -63,9 +63,18 @@
             .then(toggleModal);
             
         }
+        function deleteData(url,type){
+            url += `?username=${JSON.parse(localStorage.getItem('user')).username}&${type}=${selectedRow}`
+            fetch(url, {
+                method: 'DELETE',
+            })
+            .then(res => {return res.json()})
+            .then(res => {localStorage.setItem('user', JSON.stringify(res))})
+            .then(updateTable);
+        }
         
         function toggleModal(){
-            let modal = document.getElementsByClassName('add')[0];
+            let modal = document.getElementsByClassName('pop-up')[0];
             if(modal.style.display === 'none'){
                 modal.style.display = 'block';
             }else{
@@ -75,6 +84,7 @@
 
         function SetSelectedRow(event){
             selectedRow = event.target.parentElement.id;
+            updateTable();
             
         }
         
@@ -109,6 +119,10 @@
 
                 row.setAttribute('id', index);
                 row.addEventListener('click',(event) => {SetSelectedRow(event)});
+
+                if(selectedRow == index){
+                    row.style.backgroundColor = "blue";
+                }
 
                 table.appendChild(row);
             });

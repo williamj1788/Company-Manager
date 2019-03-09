@@ -115,7 +115,7 @@ table, th, td {
   color: #707070;
 }
 
-.add {
+.pop-up {
   display: none;
   position: fixed;
   z-index: 1;
@@ -126,7 +126,7 @@ table, th, td {
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.4);
 }
-.add .container {
+.pop-up .container {
   background-color: white;
   max-width: 300px;
   width: 100%;
@@ -135,19 +135,19 @@ table, th, td {
   border-radius: 10px;
   animation: zoomOut 1s;
 }
-.add .container .modal {
+.pop-up .container .modal {
   background-color: rgba(0, 220, 255, 0.05);
 }
-.add .container .modal .modal-container {
+.pop-up .container .modal .modal-container {
   width: fit-content;
   margin: 0 auto;
 }
-.add .container .modal .modal-container label {
+.pop-up .container .modal .modal-container label {
   display: block;
   text-align: center;
   padding: 10px 0;
 }
-.add .container .modal .modal-container input {
+.pop-up .container .modal .modal-container input {
   display: block;
   width: fit-content;
   height: 20px;
@@ -155,7 +155,7 @@ table, th, td {
   border-radius: 4px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.16);
 }
-.add .container .modal .modal-container .button {
+.pop-up .container .modal .modal-container .button {
   width: 75px;
   height: 37px;
   display: block;
@@ -170,11 +170,11 @@ table, th, td {
   font-size: 15px;
   margin: 10px auto;
 }
-.add .container .modal .modal-container .button:hover {
+.pop-up .container .modal .modal-container .button:hover {
   background-color: #006999;
   cursor: pointer;
 }
-.add .container .modal .modal-container .button:focus {
+.pop-up .container .modal .modal-container .button:focus {
   outline: none;
 }
 
