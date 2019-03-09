@@ -121,6 +121,28 @@ router.post('/products', (req,res,next) => {
     });
 });
 
+router.delete('/products', (req,res,next) => {
+    fs.readFile('companies.json', (err, content) => {
+        if(err) throw err;
+        let dataBase = JSON.parse(content);
+        
+        let company = dataBase.companies.filter((company) => {
+            if(company.username === req.query.username){
+                return company;
+            }
+        })[0];
+
+        let companyIndex = dataBase.companies.indexOf(company);
+        dataBase.companies[companyIndex].products.splice(parseInt(req.query.product),1);
+        fs.writeFile('companies.json', JSON.stringify(dataBase,null,2), err => {
+            if(err) throw err;
+        })
+        res.send(JSON.stringify(company))
+
+        
+    })
+});
+
 router.get('/stores', (req,res,next) => {
     res.sendFile(path.join(__dirname, 'public/store.html'));
 });
