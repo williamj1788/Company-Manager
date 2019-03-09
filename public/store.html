@@ -4,9 +4,125 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../css/Normalize.css">
+    <link rel="stylesheet" href="../css/companyDetail.css">
     <title>Stores</title>
 </head>
     <body>
-        <h1>Stores</h1>
+        <div id="main">
+            <div class="title-container">
+                <h1 class="title">Stores</h1>
+                <button class="back" onclick="back()">Back</button>
+            </div>
+            <input type="text" id="search-bar">
+            <div class="button-container">
+                <button class="button" onclick="toggleModal()">Add</button>
+                <button class="button" onclick="deleteData('http://localhost:3000/company/products','product')">Delete</button>
+                <button class="button" onclick="toggleModalWithData()">Edit</button>
+            </div>
+            <table id="customers-table">
+                <tr id="header">
+                    <th>Name</th>
+                    <th>Revenue</th>
+                    <th>Expense</th>
+                </tr>
+            </table>
+        </div>
+        <div class="pop-up" style="display: none;">
+            <div class="container">
+                <form class="modal">
+                    <div class="modal-container">
+                        <label for="name"><b>Name</b></label>
+                        <input id="name" type="text" name="name" required>
+                        <label for="revenue"><b>Revenue</b></label>
+                        <input id="revenue" type="number" name="revenue" min="0" required>
+                        <label for="expense"><b>Expense</b></label>
+                        <input id="expense" type="number" name="expense" min="0" required>
+                        <button class="button" type="submit" id="submit">Add</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <script src="../dataHandler.js"></script>
+        <script>
+        function toggleModalWithData(){
+            if(selectedRow){
+                let product = JSON.parse(localStorage.getItem('user')).products[parseInt(selectedRow)];
+                let modal = document.getElementsByClassName('pop-up')[0];
+                let form = document.getElementsByClassName('modal')[0];
+                let sumbitButton = document.getElementById('submit');
+
+                let name = document.getElementById('name');
+                let price = document.getElementById('price');
+                let stock = document.getElementById('stock');
+                
+                name.value = product.name;
+                price.value = parseInt(product.price);
+                stock.value = parseInt(product.stock);
+
+                form.removeEventListener('submit',onSubmit);
+                form.addEventListener('submit', onSubmit2);
+
+                sumbitButton.innerHTML = 'Edit';
+            
+                if(modal.style.display === 'none'){
+                    modal.style.display = 'block';
+                }else{
+                    modal.style.display = 'none';
+                }
+            }
+        }
+
+        function updateTable(){
+            console.log('Now Updating');
+            let products = JSON.parse(localStorage.getItem('user')).products;
+            let table = document.getElementById('customers-table');
+            let header = document.getElementById('header');
+            while (table.hasChildNodes()) {   
+                table.removeChild(table.firstChild);
+            }
+            table.appendChild(header);
+
+            products.forEach((product,index) => {
+                let row = document.createElement('tr');
+                
+                let td = document.createElement('td');
+                td.appendChild(document.createTextNode(product.name));
+                row.appendChild(td);
+                
+                td = document.createElement('td');
+                td.appendChild(document.createTextNode(product.price));
+                row.appendChild(td);
+
+                td = document.createElement('td');
+                td.appendChild(document.createTextNode(product.stock));
+                row.appendChild(td);
+
+                row.setAttribute('id', index);
+                row.addEventListener('click',(event) => {SetSelectedRow(event)});
+
+                if(selectedRow == index){
+                    row.style.backgroundColor = "#00D8FA";
+                }
+
+                table.appendChild(row);
+            });
+        }
+        function onSubmit(event){
+            event.preventDefault();
+            addData('http://localhost:3000/company/products');
+            form.reset();
+            return false;
+        }
+        function onSubmit2(event){
+            event.preventDefault();
+            editData('http://localhost:3000/company/products');
+            form.reset();
+            return false;
+        }
+        form.addEventListener('submit',onSubmit);
+        updateTable();
+        
+        </script>
     </body>
 </html>
