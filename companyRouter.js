@@ -11,7 +11,6 @@ router.get('/customers', (req,res,next) => {
     res.sendFile(path.join(__dirname, 'public/customer.html'));
 });
 router.post('/customers', (req,res,next) => {
-    console.log('hello');
     fs.readFile('companies.json', (err, content) => {
         if(err) throw err;
         let dataBase = JSON.parse(content);
@@ -94,6 +93,34 @@ router.put('/customers', (req,res,next) => {
 router.get('/products', (req,res,next) => {
     res.sendFile(path.join(__dirname, 'public/product.html'));
 });
+
+router.post('/products', (req,res,next) => {
+    fs.readFile('companies.json', (err, content) => {
+        if(err) throw err;
+        let dataBase = JSON.parse(content);
+
+        let company = dataBase.companies.filter((company) => {
+            if(company.username === req.body.username){
+                return company;
+            }
+        })[0];
+
+        let product = {
+            id: company.products.length,
+            name: req.body.name,
+            price: parseInt(req.body.price),
+            stock: parseInt(req.body.stock),
+        }
+
+        let companyIndex = dataBase.companies.indexOf(company);
+        dataBase.companies[companyIndex].products.push(product);
+        fs.writeFile('companies.json', JSON.stringify(dataBase,null,2), err => {
+            if(err) throw err;
+        })
+        res.send(JSON.stringify(company));
+    });
+});
+
 router.get('/stores', (req,res,next) => {
     res.sendFile(path.join(__dirname, 'public/store.html'));
 });

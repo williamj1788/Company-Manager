@@ -6,26 +6,25 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="../css/Normalize.css">
     <link rel="stylesheet" href="../css/companyDetail.css">
-    <title>Customers</title>
+    <title>Products</title>
 </head>
     <body>
         <div id="main">
             <div class="title-container">
-                <h1 class="title">Customers</h1>
+                <h1 class="title">Products</h1>
                 <button class="back" onclick="back()">Back</button>
             </div>
             <input type="text" id="search-bar">
             <div class="button-container">
                 <button class="button" onclick="toggleModal()">Add</button>
-                <button class="button" onclick="deleteData('http://localhost:3000/company/customers','customer')">Delete</button>
+                <button class="button" onclick="deleteData('http://localhost:3000/company/products','products')">Delete</button>
                 <button class="button" onclick="toggleModalWithData()">Edit</button>
             </div>
             <table id="customers-table">
                 <tr id="header">
-                    <th>Firstname</th>
-                    <th>Lastname</th>
-                    <th>Age</th>
-                    <th>Money Spented</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Stock</th>
                 </tr>
             </table>
         </div>
@@ -33,14 +32,12 @@
             <div class="container">
                 <form class="modal">
                     <div class="modal-container">
-                        <label for="firstname"><b>Firstname</b></label>
-                        <input id="firstname" type="text" name="firstname" required>
-                        <label for="lastname"><b>Lastname</b></label>
-                        <input id="lastname" type="text" name="lastname" required>
-                        <label for="age"><b>Age</b></label>
-                        <input id="age" type="number" name="age" min="0" required>
-                        <label for="spent"><b>Money Spented</b></label>
-                        <input id="spent" type="number" name="spent" required>
+                        <label for="name"><b>Name</b></label>
+                        <input id="name" type="text" name="name" required>
+                        <label for="price"><b>Price</b></label>
+                        <input id="price" type="number" name="price" min="0" required>
+                        <label for="stock"><b>Stock</b></label>
+                        <input id="stock" type="number" name="stock" min="0" required>
                         <button class="button" type="submit" id="submit">Add</button>
                     </div>
                 </form>
@@ -50,20 +47,18 @@
         <script>
         function toggleModalWithData(){
             if(selectedRow){
-                let customer = JSON.parse(localStorage.getItem('user')).customers[parseInt(selectedRow)];
+                let product = JSON.parse(localStorage.getItem('user')).products[parseInt(selectedRow)];
                 let modal = document.getElementsByClassName('pop-up')[0];
                 let form = document.getElementsByClassName('modal')[0];
                 let sumbitButton = document.getElementById('submit');
 
-                let firstname = document.getElementById('firstname');
-                let lastname = document.getElementById('lastname');
-                let age = document.getElementById('age');
-                let spent = document.getElementById('spent');
+                let name = document.getElementById('name');
+                let price = document.getElementById('price');
+                let stock = document.getElementById('stock');
                 
-                firstname.value = customer.firstname;
-                lastname.value = customer.lastname;
-                age.value = parseInt(customer.age);
-                spent.value = parseInt(customer.spent);
+                name.value = products.name;
+                price.value = parseInt(products.price);
+                stock.value = parseInt(products.stock);
 
                 form.removeEventListener('submit',onSubmit);
                 form.addEventListener('submit', onSubmit2);
@@ -80,7 +75,7 @@
 
         function updateTable(){
             console.log('Now Updating');
-            let customers = JSON.parse(localStorage.getItem('user')).customers;
+            let products = JSON.parse(localStorage.getItem('user')).products;
             let table = document.getElementById('customers-table');
             let header = document.getElementById('header');
             while (table.hasChildNodes()) {   
@@ -88,23 +83,19 @@
             }
             table.appendChild(header);
 
-            customers.forEach((customer,index) => {
+            products.forEach((product,index) => {
                 let row = document.createElement('tr');
                 
                 let td = document.createElement('td');
-                td.appendChild(document.createTextNode(customer.firstname));
+                td.appendChild(document.createTextNode(product.name));
                 row.appendChild(td);
                 
                 td = document.createElement('td');
-                td.appendChild(document.createTextNode(customer.lastname));
+                td.appendChild(document.createTextNode(product.price));
                 row.appendChild(td);
 
                 td = document.createElement('td');
-                td.appendChild(document.createTextNode(customer.age));
-                row.appendChild(td);
-
-                td = document.createElement('td');
-                td.appendChild(document.createTextNode(customer.spent));
+                td.appendChild(document.createTextNode(product.stock));
                 row.appendChild(td);
 
                 row.setAttribute('id', index);
@@ -117,6 +108,19 @@
                 table.appendChild(row);
             });
         }
+        function onSubmit(event){
+            event.preventDefault();
+            addData('http://localhost:3000/company/products');
+            form.reset();
+            return false;
+        }
+        function onSubmit2(event){
+            event.preventDefault();
+            editData('http://localhost:3000/company/products');
+            form.reset();
+            return false;
+        }
+        form.addEventListener('submit',onSubmit);
         updateTable();
         
         </script>

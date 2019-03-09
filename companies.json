@@ -55,7 +55,20 @@
           "spent": 15
         }
       ],
-      "products": [],
+      "products": [
+        {
+          "id": 0,
+          "name": "dd",
+          "price": 2,
+          "stock": 2
+        },
+        {
+          "id": 1,
+          "name": "dd",
+          "price": 1,
+          "stock": 6
+        }
+      ],
       "stores": []
     }
   ]

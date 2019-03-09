@@ -59,16 +59,3 @@ function SetSelectedRow(event){
 function back(){
     window.location.pathname = '/company';
 }
-function onSubmit(event){
-    event.preventDefault();
-    addData('http://localhost:3000/company/customers');
-    form.reset();
-    return false;
-}
-function onSubmit2(event){
-    event.preventDefault();
-    editData('http://localhost:3000/company/customers');
-    form.reset();
-    return false;
-}
-form.addEventListener('submit',onSubmit);
