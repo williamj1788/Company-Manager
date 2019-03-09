@@ -56,9 +56,9 @@
                 let price = document.getElementById('price');
                 let stock = document.getElementById('stock');
                 
-                name.value = products.name;
-                price.value = parseInt(products.price);
-                stock.value = parseInt(products.stock);
+                name.value = product.name;
+                price.value = parseInt(product.price);
+                stock.value = parseInt(product.stock);
 
                 form.removeEventListener('submit',onSubmit);
                 form.addEventListener('submit', onSubmit2);

@@ -41,6 +41,7 @@ function editData(url){
 
 function toggleModal(){
     let modal = document.getElementsByClassName('pop-up')[0];
+    
     form.removeEventListener('submit',onSubmit2);
     form.addEventListener('submit', onSubmit);
     

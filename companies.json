@@ -58,9 +58,15 @@
       "products": [
         {
           "id": 0,
-          "name": "dd",
-          "price": 2,
-          "stock": 2
+          "name": "dds",
+          "price": 3,
+          "stock": 3
+        },
+        {
+          "id": 1,
+          "name": "Jacquez",
+          "price": 1,
+          "stock": 1
         }
       ],
       "stores": []
