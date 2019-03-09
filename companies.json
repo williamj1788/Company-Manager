@@ -46,6 +46,13 @@
           "lastname": "d",
           "age": 1,
           "spent": 2
+        },
+        {
+          "id": 2,
+          "firstname": "Jacquez",
+          "lastname": "Williams",
+          "age": 15,
+          "spent": 15
         }
       ],
       "products": [],

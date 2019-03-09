@@ -4,9 +4,121 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Products</title>
+    <link rel="stylesheet" href="../css/Normalize.css">
+    <link rel="stylesheet" href="../css/companyDetail.css">
+    <title>Customers</title>
 </head>
     <body>
-        <h1>Products</h1>
+        <div id="main">
+            <div class="title-container">
+                <h1 class="title">Customers</h1>
+                <button class="back" onclick="back()">Back</button>
+            </div>
+            <input type="text" id="search-bar">
+            <div class="button-container">
+                <button class="button" onclick="toggleModal()">Add</button>
+                <button class="button" onclick="deleteData('http://localhost:3000/company/customers','customer')">Delete</button>
+                <button class="button" onclick="toggleModalWithData()">Edit</button>
+            </div>
+            <table id="customers-table">
+                <tr id="header">
+                    <th>Firstname</th>
+                    <th>Lastname</th>
+                    <th>Age</th>
+                    <th>Money Spented</th>
+                </tr>
+            </table>
+        </div>
+        <div class="pop-up" style="display: none;">
+            <div class="container">
+                <form class="modal">
+                    <div class="modal-container">
+                        <label for="firstname"><b>Firstname</b></label>
+                        <input id="firstname" type="text" name="firstname" required>
+                        <label for="lastname"><b>Lastname</b></label>
+                        <input id="lastname" type="text" name="lastname" required>
+                        <label for="age"><b>Age</b></label>
+                        <input id="age" type="number" name="age" min="0" required>
+                        <label for="spent"><b>Money Spented</b></label>
+                        <input id="spent" type="number" name="spent" required>
+                        <button class="button" type="submit" id="submit">Add</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <script src="../dataHandler.js"></script>
+        <script>
+        function toggleModalWithData(){
+            if(selectedRow){
+                let customer = JSON.parse(localStorage.getItem('user')).customers[parseInt(selectedRow)];
+                let modal = document.getElementsByClassName('pop-up')[0];
+                let form = document.getElementsByClassName('modal')[0];
+                let sumbitButton = document.getElementById('submit');
+
+                let firstname = document.getElementById('firstname');
+                let lastname = document.getElementById('lastname');
+                let age = document.getElementById('age');
+                let spent = document.getElementById('spent');
+                
+                firstname.value = customer.firstname;
+                lastname.value = customer.lastname;
+                age.value = parseInt(customer.age);
+                spent.value = parseInt(customer.spent);
+
+                form.removeEventListener('submit',onSubmit);
+                form.addEventListener('submit', onSubmit2);
+
+                sumbitButton.innerHTML = 'Edit';
+            
+                if(modal.style.display === 'none'){
+                    modal.style.display = 'block';
+                }else{
+                    modal.style.display = 'none';
+                }
+            }
+        }
+
+        function updateTable(){
+            console.log('Now Updating');
+            let customers = JSON.parse(localStorage.getItem('user')).customers;
+            let table = document.getElementById('customers-table');
+            let header = document.getElementById('header');
+            while (table.hasChildNodes()) {   
+                table.removeChild(table.firstChild);
+            }
+            table.appendChild(header);
+
+            customers.forEach((customer,index) => {
+                let row = document.createElement('tr');
+                
+                let td = document.createElement('td');
+                td.appendChild(document.createTextNode(customer.firstname));
+                row.appendChild(td);
+                
+                td = document.createElement('td');
+                td.appendChild(document.createTextNode(customer.lastname));
+                row.appendChild(td);
+
+                td = document.createElement('td');
+                td.appendChild(document.createTextNode(customer.age));
+                row.appendChild(td);
+
+                td = document.createElement('td');
+                td.appendChild(document.createTextNode(customer.spent));
+                row.appendChild(td);
+
+                row.setAttribute('id', index);
+                row.addEventListener('click',(event) => {SetSelectedRow(event)});
+
+                if(selectedRow == index){
+                    row.style.backgroundColor = "#00D8FA";
+                }
+
+                table.appendChild(row);
+            });
+        }
+        updateTable();
+        
+        </script>
     </body>
 </html>

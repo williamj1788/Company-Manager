@@ -46,60 +46,8 @@
                 </form>
             </div>
         </div>
+        <script src="../dataHandler.js"></script>
         <script>
-        let selectedRow = null;
-        function addData(url){
-            let form = document.getElementsByClassName('modal')[0];
-            let formData = new FormData(form);
-            formData.append('username', JSON.parse(localStorage.getItem('user')).username);
-            fetch(url, {
-                method: 'POST',
-                body: formData
-            })
-            .then(res => {return res.json()})
-            .then(res => {
-                localStorage.setItem('user', JSON.stringify(res))
-            }).then(updateTable)
-            .then(toggleModal);
-            
-        }
-        function deleteData(url,type){
-            url += `?username=${JSON.parse(localStorage.getItem('user')).username}&${type}=${selectedRow}`
-            fetch(url, {
-                method: 'DELETE',
-            })
-            .then(res => {return res.json()})
-            .then(res => {localStorage.setItem('user', JSON.stringify(res))})
-            .then(updateTable);
-        }
-
-        function editData(url){
-            let form = document.getElementsByClassName('modal')[0];
-            let formData = new FormData(form);
-            formData.append('username', JSON.parse(localStorage.getItem('user')).username);
-            formData.append('id', parseInt(selectedRow));
-            fetch(url, {
-                method: 'PUT',
-                body: formData,
-            })
-            .then(res => {return res.json()})
-            .then(res => {localStorage.setItem('user', JSON.stringify(res))})
-            .then(updateTable)
-            .then(toggleModal);
-        }
-        
-        function toggleModal(){
-            let modal = document.getElementsByClassName('pop-up')[0];
-            let form = document.getElementsByClassName('modal')[0];
-            form.removeEventListener('submit',onSubmit2);
-            form.addEventListener('submit', onSubmit);
-            
-            if(modal.style.display === 'none'){
-                modal.style.display = 'block';
-            }else{
-                modal.style.display = 'none';
-            }
-        }
         function toggleModalWithData(){
             if(selectedRow){
                 let customer = JSON.parse(localStorage.getItem('user')).customers[parseInt(selectedRow)];
@@ -130,12 +78,6 @@
             }
         }
 
-        function SetSelectedRow(event){
-            selectedRow = event.target.parentElement.id;
-            updateTable();
-            
-        }
-        
         function updateTable(){
             console.log('Now Updating');
             let customers = JSON.parse(localStorage.getItem('user')).customers;
@@ -175,26 +117,8 @@
                 table.appendChild(row);
             });
         }
-        function back(){
-            window.location.pathname = '/company';
-        }
-        let form = document.getElementsByClassName('modal')[0];
-        function onSubmit(event){
-            event.preventDefault();
-            addData('http://localhost:3000/company/customers');
-            form.reset();
-            return false;
-        }
-        function onSubmit2(event){
-            event.preventDefault();
-            editData('http://localhost:3000/company/customers');
-            form.reset();
-            return false;
-        }
-        form.addEventListener('submit',onSubmit);
         updateTable();
-
-
+        
         </script>
     </body>
 </html>
