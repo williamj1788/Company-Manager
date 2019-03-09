@@ -47,18 +47,18 @@
         <script>
         function toggleModalWithData(){
             if(selectedRow){
-                let product = JSON.parse(localStorage.getItem('user')).products[parseInt(selectedRow)];
+                let store = JSON.parse(localStorage.getItem('user')).stores[parseInt(selectedRow)];
                 let modal = document.getElementsByClassName('pop-up')[0];
                 let form = document.getElementsByClassName('modal')[0];
                 let sumbitButton = document.getElementById('submit');
 
                 let name = document.getElementById('name');
-                let price = document.getElementById('price');
-                let stock = document.getElementById('stock');
+                let revenue = document.getElementById('revenue');
+                let expense = document.getElementById('expense');
                 
                 name.value = product.name;
-                price.value = parseInt(product.price);
-                stock.value = parseInt(product.stock);
+                revenue.value = parseInt(product.revenue);
+                expense.value = parseInt(product.expense);
 
                 form.removeEventListener('submit',onSubmit);
                 form.addEventListener('submit', onSubmit2);
@@ -75,7 +75,7 @@
 
         function updateTable(){
             console.log('Now Updating');
-            let products = JSON.parse(localStorage.getItem('user')).products;
+            let stores = JSON.parse(localStorage.getItem('user')).stores;
             let table = document.getElementById('customers-table');
             let header = document.getElementById('header');
             while (table.hasChildNodes()) {   
@@ -83,19 +83,20 @@
             }
             table.appendChild(header);
 
-            products.forEach((product,index) => {
+            stores.forEach((store,index) => {
+                console.log(store)
                 let row = document.createElement('tr');
                 
                 let td = document.createElement('td');
-                td.appendChild(document.createTextNode(product.name));
+                td.appendChild(document.createTextNode(store.name));
                 row.appendChild(td);
                 
                 td = document.createElement('td');
-                td.appendChild(document.createTextNode(product.price));
+                td.appendChild(document.createTextNode(store.revenue));
                 row.appendChild(td);
 
                 td = document.createElement('td');
-                td.appendChild(document.createTextNode(product.stock));
+                td.appendChild(document.createTextNode(store.expense));
                 row.appendChild(td);
 
                 row.setAttribute('id', index);
@@ -110,13 +111,13 @@
         }
         function onSubmit(event){
             event.preventDefault();
-            addData('http://localhost:3000/company/products');
+            addData('http://localhost:3000/company/stores');
             form.reset();
             return false;
         }
         function onSubmit2(event){
             event.preventDefault();
-            editData('http://localhost:3000/company/products');
+            editData('http://localhost:3000/company/stores');
             form.reset();
             return false;
         }

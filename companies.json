@@ -61,15 +61,22 @@
           "name": "dds",
           "price": 3,
           "stock": 3
+        }
+      ],
+      "stores": [
+        {
+          "id": 0,
+          "name": "Jacquez Williams",
+          "revenue": 1,
+          "expense": 1
         },
         {
           "id": 1,
-          "name": "Jacquez",
-          "price": 1,
-          "stock": 1
+          "name": "Jacquez ",
+          "revenue": 0,
+          "expense": 0
         }
-      ],
-      "stores": []
+      ]
     }
   ]
 }

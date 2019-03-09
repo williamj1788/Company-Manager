@@ -176,4 +176,31 @@ router.get('/stores', (req,res,next) => {
     res.sendFile(path.join(__dirname, 'public/store.html'));
 });
 
+router.post('/stores', (req,res,next) => {
+    fs.readFile('companies.json', (err, content) => {
+        if(err) throw err;
+        let dataBase = JSON.parse(content);
+
+        let company = dataBase.companies.filter((company) => {
+            if(company.username === req.body.username){
+                return company;
+            }
+        })[0];
+
+        let store = {
+            id: company.stores.length,
+            name: req.body.name,
+            revenue: parseInt(req.body.revenue),
+            expense: parseInt(req.body.expense),
+        }
+
+        let companyIndex = dataBase.companies.indexOf(company);
+        dataBase.companies[companyIndex].stores.push(store);
+        fs.writeFile('companies.json', JSON.stringify(dataBase,null,2), err => {
+            if(err) throw err;
+        })
+        res.send(JSON.stringify(company));
+    });
+});
+
 module.exports = router;
