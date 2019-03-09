@@ -19,37 +19,22 @@
       "password": "s",
       "customers": [
         {
-          "firstname": "Jacquez",
-          "lastname": "Wiliams",
-          "age": 18,
-          "spent": 0
-        },
-        {
-          "firstname": "quez",
-          "lastname": "Wiliams",
-          "age": 1,
-          "spent": 2
-        },
-        {
-          "firstname": "Jac",
-          "lastname": "Wiliams",
-          "age": 19,
-          "spent": 1
-        },
-        {
+          "id": 0,
           "firstname": "Jacquez",
           "lastname": "Williams",
           "age": 15,
           "spent": 15
         },
         {
+          "id": 1,
           "firstname": "Jacquez",
           "lastname": "Williams",
           "age": 15,
           "spent": 15
         },
         {
-          "firstname": "Jacquez",
+          "id": 2,
+          "firstname": "Dashaun",
           "lastname": "Williams",
           "age": 15,
           "spent": 15
@@ -61,32 +46,7 @@
     {
       "username": "ss",
       "password": "ss",
-      "customers": [
-        {
-          "firstname": "Jacquez",
-          "lastname": "Williams",
-          "age": 15,
-          "spent": 15
-        },
-        {
-          "firstname": "Jacquez",
-          "lastname": "Williams",
-          "age": 15,
-          "spent": 15
-        },
-        {
-          "firstname": "Jacquez",
-          "lastname": "Williams",
-          "age": 15,
-          "spent": 15
-        },
-        {
-          "firstname": "Jacquez",
-          "lastname": "Williams",
-          "age": 15,
-          "spent": 15
-        }
-      ],
+      "customers": [],
       "products": [],
       "stores": []
     }

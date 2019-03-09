@@ -47,6 +47,7 @@
             </div>
         </div>
         <script>
+        let selectedRow = null;
         function addData(url){
             let form = document.getElementsByClassName('modal')[0];
             let formData = new FormData(form);
@@ -71,6 +72,11 @@
                 modal.style.display = 'none';
             }
         }
+
+        function SetSelectedRow(event){
+            selectedRow = event.target.parentElement.id;
+            
+        }
         
         function updateTable(){
             console.log('Now Updating');
@@ -82,7 +88,7 @@
             }
             table.appendChild(header);
 
-            customers.forEach(customer => {
+            customers.forEach((customer,index) => {
                 let row = document.createElement('tr');
                 
                 let td = document.createElement('td');
@@ -100,6 +106,9 @@
                 td = document.createElement('td');
                 td.appendChild(document.createTextNode(customer.spent));
                 row.appendChild(td);
+
+                row.setAttribute('id', index);
+                row.addEventListener('click',(event) => {SetSelectedRow(event)});
 
                 table.appendChild(row);
             });

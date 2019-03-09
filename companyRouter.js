@@ -16,17 +16,20 @@ router.post('/customers', (req,res,next) => {
         if(err) throw err;
         let dataBase = JSON.parse(content);
 
-        let customer = {
-            firstname: req.body.firstname,
-            lastname: req.body.lastname,
-            age: parseInt(req.body.age),
-            spent: parseInt(req.body.spent),
-        }
         let company = dataBase.companies.filter((company) => {
             if(company.username === req.body.username){
                 return company;
             }
         })[0];
+
+        let customer = {
+            id: company.customers.length,
+            firstname: req.body.firstname,
+            lastname: req.body.lastname,
+            age: parseInt(req.body.age),
+            spent: parseInt(req.body.spent),
+        }
+
         let companyIndex = dataBase.companies.indexOf(company);
         dataBase.companies[companyIndex].customers.push(customer);
         fs.writeFile('companies.json', JSON.stringify(dataBase,null,2), err => {
