@@ -51,9 +51,7 @@ router.delete('/customers', (req,res,next) => {
         })[0];
 
         let companyIndex = dataBase.companies.indexOf(company);
-        console.log(req.query.customer);
         dataBase.companies[companyIndex].customers.splice(parseInt(req.query.customer),1);
-        console.log(dataBase.companies[companyIndex].customers);
         fs.writeFile('companies.json', JSON.stringify(dataBase,null,2), err => {
             if(err) throw err;
         })
@@ -62,6 +60,36 @@ router.delete('/customers', (req,res,next) => {
         
     })
 });
+
+router.put('/customers', (req,res,next) => {
+    fs.readFile('companies.json', (err,content) => {
+        if(err) throw err;
+        let dataBase = JSON.parse(content);
+
+        let company = dataBase.companies.filter((company) => {
+            if(company.username === req.body.username){
+                return company;
+            }
+        })[0];
+
+        let customer = {
+            id: parseInt(req.body.id),
+            firstname: req.body.firstname,
+            lastname: req.body.lastname,
+            age: parseInt(req.body.age),
+            spent: parseInt(req.body.spent),
+        }
+
+        let companyIndex = dataBase.companies.indexOf(company);
+        dataBase.companies[companyIndex].customers.splice(parseInt(req.body.id),1, customer);
+        fs.writeFile('companies.json', JSON.stringify(dataBase,null,2), err => {
+            if(err) throw err;
+        })
+        res.send(JSON.stringify(company))
+
+
+    })
+})
 
 router.get('/products', (req,res,next) => {
     res.sendFile(path.join(__dirname, 'public/product.html'));

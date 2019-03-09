@@ -73,12 +73,26 @@
             .then(updateTable);
         }
 
-        function editData(){
-            
+        function editData(url){
+            let form = document.getElementsByClassName('modal')[0];
+            let formData = new FormData(form);
+            formData.append('username', JSON.parse(localStorage.getItem('user')).username);
+            formData.append('id', parseInt(selectedRow));
+            fetch(url, {
+                method: 'PUT',
+                body: formData,
+            })
+            .then(res => {return res.json()})
+            .then(res => {localStorage.setItem('user', JSON.stringify(res))})
+            .then(updateTable)
+            .then(toggleModal);
         }
         
         function toggleModal(){
             let modal = document.getElementsByClassName('pop-up')[0];
+            let form = document.getElementsByClassName('modal')[0];
+            form.removeEventListener('submit',onSubmit2);
+            form.addEventListener('submit', onSubmit);
             
             if(modal.style.display === 'none'){
                 modal.style.display = 'block';
@@ -90,6 +104,8 @@
             if(selectedRow){
                 let customer = JSON.parse(localStorage.getItem('user')).customers[parseInt(selectedRow)];
                 let modal = document.getElementsByClassName('pop-up')[0];
+                let form = document.getElementsByClassName('modal')[0];
+                let sumbitButton = document.getElementById('submit');
 
                 let firstname = document.getElementById('firstname');
                 let lastname = document.getElementById('lastname');
@@ -100,17 +116,18 @@
                 lastname.value = customer.lastname;
                 age.value = parseInt(customer.age);
                 spent.value = parseInt(customer.spent);
+
+                form.removeEventListener('submit',onSubmit);
+                form.addEventListener('submit', onSubmit2);
+
+                sumbitButton.innerHTML = 'Edit';
             
                 if(modal.style.display === 'none'){
                     modal.style.display = 'block';
                 }else{
                     modal.style.display = 'none';
                 }
-
-
             }
-
-            
         }
 
         function SetSelectedRow(event){
@@ -165,6 +182,12 @@
         function onSubmit(event){
             event.preventDefault();
             addData('http://localhost:3000/company/customers');
+            form.reset();
+            return false;
+        }
+        function onSubmit2(event){
+            event.preventDefault();
+            editData('http://localhost:3000/company/customers');
             form.reset();
             return false;
         }
