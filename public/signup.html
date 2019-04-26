@@ -38,9 +38,15 @@
                 method: 'POST',
                 body: formData
             }).then(res => {
+                console.log(res);
                 if(res.status === 201){
                     window.location = 'company';
                 }
+                return res
+            })
+            .then(res => res.json())
+            .then(res => {
+                localStorage.setItem('user', JSON.stringify(res));
             })
             form.reset();
         }

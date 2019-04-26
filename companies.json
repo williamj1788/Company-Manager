@@ -1,74 +1,57 @@
 {
   "companies": [
     {
-      "username": "qqqqqqqqq",
-      "password": "qqqqqq",
-      "customers": [],
-      "products": [],
-      "stores": []
-    },
-    {
-      "username": "sdfsd",
-      "password": "adsfas",
-      "customers": [],
-      "products": [],
-      "stores": []
-    },
-    {
-      "username": "s",
-      "password": "s",
+      "username": "williamj1788",
+      "password": "123456789",
       "customers": [
         {
+          "id": 0,
+          "firstname": "joe",
+          "lastname": "bob",
+          "age": 15,
+          "spent": 20000
+        },
+        {
           "id": 1,
+          "firstname": "hue",
+          "lastname": "bob",
+          "age": 59,
+          "spent": 50000
+        },
+        {
+          "id": 2,
           "firstname": "Dashaun",
-          "lastname": "sdfasdf",
-          "age": 15,
-          "spent": 1
-        }
-      ],
-      "products": [],
-      "stores": []
-    },
-    {
-      "username": "ss",
-      "password": "ss",
-      "customers": [
-        {
-          "id": 1,
-          "firstname": "Jacquez",
-          "lastname": "Williams",
-          "age": 15,
-          "spent": 15
-        },
-        {
-          "id": 2,
-          "firstname": "d",
-          "lastname": "d",
-          "age": 1,
-          "spent": 2
-        },
-        {
-          "id": 2,
-          "firstname": "Jacquez",
-          "lastname": "Williams",
-          "age": 15,
-          "spent": 15
+          "lastname": "doe",
+          "age": 88,
+          "spent": 500000
         }
       ],
       "products": [
         {
+          "id": 0,
+          "name": "Food",
+          "price": 15,
+          "stock": 10000
+        },
+        {
           "id": 1,
-          "name": "Jacquez Williams",
-          "price": 4,
-          "stock": 6
+          "name": "Item",
+          "price": 789,
+          "stock": 1563
         }
       ],
       "stores": [
         {
           "id": 0,
-          "name": "Jacquez Williams",
-          "revenue": 3,
-          "expense": 3
+          "name": "Store1",
+          "revenue": 156156,
+          "expense": 1355
+        },
+        {
+          "id": 1,
+          "name": "Store2",
+          "revenue": 7865465,
+          "expense": 521584498
         }
       ]
     }
